@@ -14,4 +14,6 @@ Golearn是个人学习golang时针对一些基础功能（例如文件操作、�
     * vulbox 是用来获取漏洞盒子厂商列表等级的
     * web 是go开发web服务器的demo
     * websocket 是websocket的demo
+    * interface 是接口的相关demo
+    * leetcode 是 leetcode 网站的题
 
