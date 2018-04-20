@@ -1,3 +1,4 @@
+//baseChannel 是 goroutine 和 通道 结合的基本demo
 package main
 
 import "fmt"
