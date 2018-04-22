@@ -1,3 +1,5 @@
+//singleChannel 是单向通道的demo
+//out <-chan int 是发送通道，in chan<- int 是接收通道
 package main
 
 import (
