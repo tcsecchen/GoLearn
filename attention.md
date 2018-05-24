@@ -12,3 +12,4 @@
 10. 无缓冲通道是缓冲为0的通道，发送时必须有其他goroutine同步接收，否则会被阻塞;而缓冲为1的通道有一个大小为1的缓冲区，无须同步接收。形象的例子：无缓冲通道好比必须要你本人签收的快递，你不来他不走，进入阻塞状态；缓冲为1的通道好比你有一个容量为1的丰巢快递柜，快递员把快递放进去就可以走，但是必须取出后才能放第2个(demo可参考[buffer1channel.go](https://github.com/tcsecchen/GoLearn/blob/master/code/goroutine/buffer1Channel/buffer1channel.go))
 11. 修改web服务器response响应头可以用 w.Header().Set(k,v) 和 w.writeHeader(code), 设置http status code(http状态码) 只能通过 w.writeHeader(404) 来实现
 12. w.Header().Set(k,v) 只能在 w.writeHeader(code) 之前使用，否则会无效
+13. for 与 select 一起使用时，在select里使用break无法跳出for循环，可以使用带标签的break 或 goto 语句跳出循环
