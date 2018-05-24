@@ -4,6 +4,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 )
 
 func main() {
@@ -14,6 +15,7 @@ func main() {
 	}
 	for i, v := range m {
 		fmt.Printf("%v : %v \n", i, v)
+		fmt.Println(reflect.TypeOf(v))
 	}
 	//interface 类型转换
 	//value.(int)转为int，value.(string) 转为 string
