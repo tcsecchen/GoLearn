@@ -97,12 +97,26 @@ func GetContent(url string) (Info, error) {
 	}
 	//获取影响版本
 	for _, j := range soup.Sel("table", &map[string]string{"id": "info_ver1"}) {
-		for _, v := range j.SelByTag("td") {
-			s := strings.Replace(v.Value, "\n", "$", -1)
-			s = strings.Replace(s, "\t", "", -1)
-			s = strings.Replace(s, "$$$", ",", -1)
-			s = strings.Replace(s, "$$+ $$", "+ ", -1)
-			info.Version = s
+		if len(j.SelByTag("td")) > 1 {
+			td1 := j.SelByTag("td")[0]
+			var version []string
+			for _, v := range td1.SelByClass("related") {
+				s := strings.Replace(v.Value, "\n", "$", -1)
+				s = strings.Replace(s, "\t", "", -1)
+				s = strings.Replace(s, "$$+ $$", "+ ", -1)
+				s = strings.Replace(s, "$", "", -1)
+				version = append(version, s)
+			}
+			info.Version = strings.Join(version, ",")
+		} else {
+			for _, v := range j.SelByTag("td") {
+				s := strings.Replace(v.Value, "\n", "$", -1)
+				s = strings.Replace(s, "\t", "", -1)
+				s = strings.Replace(s, "$$$", ",", -1)
+				s = strings.Replace(s, "$$+ $$", "+ ", -1)
+				s = strings.Replace(s, "$", "", -1)
+				info.Version = s
+			}
 		}
 	}
 

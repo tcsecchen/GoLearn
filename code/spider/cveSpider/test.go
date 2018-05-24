@@ -1,43 +1,47 @@
 package main
 
 import (
-	"GoLearn/code/spider/cvespider/parse"
 	"fmt"
-	"strconv"
-	"sync"
 )
 
 func test() {
-	cvelist := make(chan []string, 100)
-	//cveInfo := make(chan parse.Info, 100)
-	var wgSend sync.WaitGroup
-	var wgReceive sync.WaitGroup
-
-	for i := 1; i < 50; i++ {
-		url := "http://cve.scap.org.cn/cve_list.php?p=" + strconv.Itoa(i)
-		wgSend.Add(1)
-		go func(url string) {
-			defer wgSend.Done()
-			list, _ := parse.GetLinks(url)
-			cvelist <- list
-		}(url)
+	for i := 0; i < 9; i++ {
+		m := 9 / 9
+		j := m*i + 1
+		k := j + m
+		fmt.Println(j, k)
 	}
 
-	wgReceive.Add(1)
-	go func() {
-		defer wgReceive.Done()
-		for x := range cvelist {
-			fmt.Println(x)
-		}
-		fmt.Println(1)
-	}()
+	// cvelist := make(chan []string, 100)
+	// //cveInfo := make(chan parse.Info, 100)
+	// var wgSend sync.WaitGroup
+	// var wgReceive sync.WaitGroup
 
-	go func() {
-		wgSend.Wait()
-		close(cvelist)
-	}()
+	// for i := 1; i < 50; i++ {
+	// 	url := "http://cve.scap.org.cn/cve_list.php?p=" + strconv.Itoa(i)
+	// 	wgSend.Add(1)
+	// 	go func(url string) {
+	// 		defer wgSend.Done()
+	// 		list, _ := parse.GetLinks(url)
+	// 		cvelist <- list
+	// 	}(url)
+	// }
 
-	wgReceive.Wait()
+	// wgReceive.Add(1)
+	// go func() {
+	// 	defer wgReceive.Done()
+	// 	for x := range cvelist {
+	// 		fmt.Println(x)
+	// 	}
+	// 	fmt.Println(1)
+	// }()
+
+	// go func() {
+	// 	wgSend.Wait()
+	// 	close(cvelist)
+	// }()
+
+	// wgReceive.Wait()
 
 	/*
 		go func() {
@@ -50,4 +54,7 @@ func test() {
 				}
 			}
 		}()*/
+	// info, _ := parse.GetContent("http://cve.scap.org.cn/CVE-2018-2819.html")
+	// fmt.Println(info.Version)
+
 }
